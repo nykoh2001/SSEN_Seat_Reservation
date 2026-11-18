@@ -1,23 +1,22 @@
-﻿using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using SSEN_Seat_Reservation.ViewModels;
 
 namespace SSEN_Seat_Reservation;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
+    private readonly MainViewModel viewModel;
+
     public MainWindow()
     {
         InitializeComponent();
+        viewModel = new MainViewModel();
+        DataContext = viewModel;
+    }
+
+    protected override void OnClosed(System.EventArgs e)
+    {
+        viewModel.Dispose();
+        base.OnClosed(e);
     }
 }
